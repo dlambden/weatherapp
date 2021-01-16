@@ -1,0 +1,152 @@
+body {
+  margin: 1rem auto;
+  line-height: 1;
+  font-size: 16px;
+  width: 60%;
+  max-width: 720px;
+}
+
+main {
+  background: rgb(248, 249, 250);
+  border-radius: 10px;
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 3rem;
+  color: rgb(0, 0, 150);
+}
+
+h2 {
+  display: inline;
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1rem;
+  margin: 0.25rem;
+}
+
+input[type=text] {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 2px;
+  padding: 0.2em;
+}
+
+input[type=text]:focus {
+  background-color: #c4dbf5;
+  border: none;
+}
+
+.container {
+  
+  min-width: fit-content;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.location {
+  width: 40%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.currentconditions {
+  margin: 1rem 0;
+}
+
+#geolocate {
+  padding: 0.5rem;
+}
+
+.conditions {
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.temp {
+  display: inline-block;
+  font-size: 5rem;
+  font-weight: 600;
+  color: rgb(0, 0, 150);
+  margin: -1rem;
+}
+
+.weatherimage {
+  max-width: 60%;
+  margin: 1rem auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+main img {
+  max-width: 100%;
+  display: inline-block;
+  margin: -1rem;
+}
+
+.convertunits {
+  color: rgb(0, 0, 150);
+  font-weight: 600;
+  position: relative;
+  bottom: 2rem;
+  left: 2.8rem;
+}
+
+.temptoggle:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.details {
+  margin: 0;
+}
+
+.forecast {
+  margin: 1rem auto;
+  width: 95%;
+  text-align: left;
+  min-width: fit-content;
+}
+
+.card {
+  background: rgb(248, 249, 250);
+  margin: 0.2rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 0.5rem;
+  word-wrap: normal;
+  
+}
+
+.card-body img {
+  display: block;
+  max-width: 100%;
+  
+}
+
+.dualtemp {
+  color: rgb(0, 0, 150);
+  font-weight: 800;
+  float: right;
+}
+
+.row {
+  flex-wrap: nowrap;
+}

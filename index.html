@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather</title>
+  <script
+      src="https://kit.fontawesome.com/4d92a672d6.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="src/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   <div class="container">
+    <div class="location">
+      <button id="geolocate" class="btn">
+        <i class="fas fa-map-marker-alt"></i>
+      </button>
+    <form id="search-location">
+      <input type="locationvalue" id="location-input" placeholder="search location" autocomplete="off" autofocus />
+      <button type="submit" class="btn">
+        <i class="fas fa-search"></i>
+      </button>       
+    </form>
+    
+    </div>
+
+    <main>
+      <div class="userlocation">
+        <h1 id="display-location">
+          Location
+        </h1>
+        <span id="display-time">
+          Date
+        </span>
+    </div>
+
+    <div class="currentconditions">
+      <div class="weatherimage">
+        <img src="img/rainy.png" />
+        <span id="display-temp" class="temp">
+          0°
+        </span>
+        <div class="convertunits">
+          <span id="celsius" class="temptoggle">C </span>|
+          <span id="fahrenheit" class="temptoggle">F</span>
+        </div>
+      </div>
+      <span id="display-cond" class="conditions">
+        Weather
+      </span>
+      
+      </div>
+
+      <p class="details">
+        Precipitation: 18%
+        <br />
+        Humidity: 90%
+        <br />
+        Wind: 7km/h
+      </p>
+    </main>
+    <div class="col forecast">
+      <h5>
+        5 DAY FORECAST:
+      </h5>
+    
+      <div class="row">
+        <div class="col card">
+          <div class="card-body">
+            <span>
+              11/23
+            </span>
+            <img src="img/rainy.png" />
+            <span>
+              Rain
+            </span>
+            <span class="dualtemp">
+              14°/6°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span>
+              11/24
+            </span>
+            <img src="img/rainy.png" />
+            <span>
+              Rain
+            </span>
+            <span class="dualtemp">
+              13°/7°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span>
+              11/25
+            </span>
+            <img src="img/rainy.png" />
+            <span>
+              Rain
+            </span>
+            <span class="dualtemp">
+              14°/6°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span>
+              11/26
+            </span>
+            <img src="img/cloudy.png" />
+            <span>
+              Cloudy
+            </span>
+            <span class="dualtemp">
+              13°/5°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span>
+              11/27
+            </span>
+            <img src="img/partsun.png" />
+            <span>
+              Partly Sunny
+            </span>
+            <span class="dualtemp">
+              12°/4°
+            </span>
+          </div>
+        </div>
+      </div>
+  </div>
+    </div>
+    <script src="src/app.js"></script>
+</body>
+</html>
