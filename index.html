@@ -13,21 +13,22 @@
   <link href="src/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-   <div class="container">
+  <div class="container">
+
     <div class="location">
       <button id="geolocate" class="btn">
         <i class="fas fa-map-marker-alt"></i>
       </button>
-    <form id="search-location">
-      <input type="locationvalue" id="location-input" placeholder="search location" autocomplete="off" autofocus />
-      <button type="submit" class="btn">
-        <i class="fas fa-search"></i>
-      </button>       
-    </form>
-    
+      <form id="search-field">
+        <input type="locationvalue" id="location-input" placeholder="search location" autocomplete="off" autofocus />
+        <button type="submit" class="btn">
+          <i class="fas fa-search"></i>
+        </button>       
+      </form>
     </div>
 
     <main>
+
       <div class="userlocation">
         <h1 id="display-location">
           Location
@@ -35,38 +36,38 @@
         <span id="display-time">
           Date
         </span>
-    </div>
-
-    <div class="currentconditions">
-      <div class="weatherimage">
-        <img src="img/rainy.png" />
-        <span id="display-temp" class="temp">
-          0°
-        </span>
-        <div class="convertunits">
-          <span id="celsius" class="temptoggle">C </span>|
-          <span id="fahrenheit" class="temptoggle">F</span>
-        </div>
       </div>
-      <span id="display-cond" class="conditions">
-        Weather
-      </span>
-      
+
+      <div class="currentconditions">
+        <div class="weatherimage">
+          <img src="img/rainy.png" />
+          <span id="display-temp" class="temp">
+            0°
+          </span>
+          <div class="convertunits">
+            <span id="celsius" class="temptoggle">C </span>|
+            <span id="fahrenheit" class="temptoggle">F</span>
+          </div>
+        </div>
+        <span id="display-cond" class="conditions">
+          Weather
+        </span>
       </div>
 
       <p class="details">
-        Precipitation: 18%
+        Precipitation: <span id="display-precip">18%</span>
         <br />
-        Humidity: 90%
+        Humidity: <span id="display-humid">90</span>%
         <br />
-        Wind: 7km/h
+        Wind: <span id="display-wind">7</span>km/h
       </p>
+
     </main>
+
     <div class="col forecast">
       <h5>
         5 DAY FORECAST:
       </h5>
-    
       <div class="row">
         <div class="col card">
           <div class="card-body">
@@ -139,8 +140,12 @@
           </div>
         </div>
       </div>
-  </div>
     </div>
-    <script src="src/app.js"></script>
+  </div>
+  <br />
+  <span class="footer">
+    <a href="https://github.com/dlambden">Open-source code</a> by Darci Lambden   
+  </span>
+  <script src="src/app.js"></script>
 </body>
 </html>

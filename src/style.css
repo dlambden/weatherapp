@@ -4,47 +4,10 @@ body {
   font-size: 16px;
   width: 60%;
   max-width: 720px;
-}
-
-main {
-  background: rgb(248, 249, 250);
-  border-radius: 10px;
-  max-width: 75%;
-  margin: 0 auto;
-  padding: 0.5rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-h1 {
-  margin: 0 auto;
-  font-size: 3rem;
-  color: rgb(0, 0, 150);
-}
-
-h2 {
-  display: inline;
-  font-size: 2rem;
-}
-
-h5 {
-  font-size: 1rem;
-  margin: 0.25rem;
-}
-
-input[type=text] {
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid rgb(191, 191, 191);
-  border-radius: 2px;
-  padding: 0.2em;
-}
-
-input[type=text]:focus {
-  background-color: #c4dbf5;
-  border: none;
+  text-align: center;
 }
 
 .container {
-  
   min-width: fit-content;
   background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   margin: 0 auto;
@@ -60,12 +23,45 @@ input[type=text]:focus {
   justify-content: center;
 }
 
+#geolocate {
+  padding: 0.5rem;
+}
+
+input[type=text] {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 2px;
+  padding: 0.2rem;
+}
+
+input[type=text]:focus {
+  background-color: #c4dbf5;
+  border: none;
+}
+
+
+main {
+  background: rgb(248, 249, 250);
+  border-radius: 10px;
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 3rem;
+  color: rgb(0, 0, 150);
+}
+
 .currentconditions {
   margin: 1rem 0;
 }
 
-#geolocate {
-  padding: 0.5rem;
+h5 {
+  font-size: 1rem;
+  margin: 0.25rem;
 }
 
 .conditions {
@@ -113,6 +109,7 @@ main img {
   margin: 0;
 }
 
+
 .forecast {
   margin: 1rem auto;
   width: 95%;
@@ -149,4 +146,9 @@ main img {
 
 .row {
   flex-wrap: nowrap;
+}
+
+.footer {
+  color: indigo;
+  font-size: 1rem;
 }

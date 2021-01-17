@@ -1,5 +1,18 @@
+let apiKey = `3bfeb5b01631989c9755b5bc4d802195`;
 
-// Added feature to display destination time (calculated with timezone offset)
+let displayTime = document.querySelector(`#display-time`);
+let displayCity =  document.querySelector(`#display-location`);
+let displayTemperature = document.querySelector(`#display-temp`);
+let displayCond = document.querySelector(`#display-cond`);
+let displayPrecip = document.querySelector(`#display-precip`);
+let displayHumid = document.querySelector(`#display-humid`);
+let displayWind = document.querySelector(`#display-wind`);
+let celsiusBtn = document.querySelector(`#celsius`);
+let fahrenheitBtn = document.querySelector(`#fahrenheit`);
+let searchField = document.querySelector(`#search-field`);
+let geolocateBtn = document.querySelector(`#geolocate`);
+
+let unit = `metric`;
 
 function updateTime(offset) {
   let now = new Date();
@@ -7,24 +20,19 @@ function updateTime(offset) {
   let localOffset = now.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
   let time = new Date(utc + (1000*offset));
-  showTime.innerHTML = time.toLocaleString();
+  let timeSplit = time.toLocaleString().split(' ');
+  let shavedTime = timeSplit[1].slice(0, 5);
+  let timeString = `${timeSplit[0]} ${shavedTime} ${timeSplit[2]}`;
+  displayTime.innerHTML = timeString;
 }
 
-//Ignore unit conversion functions here, not working yet
 
 function setMetric(event) {
   unit = `metric`;
-  }
-  
-  function setImperial(event) {
-  unit = `imperial`;
 }
-
-function getPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(updateWeather, updateTime()); 
+  
+function setImperial(event) {
+  unit = `imperial`;
 }
 
 function runGeo(event) {
@@ -32,37 +40,72 @@ function runGeo(event) {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
 
-function findLocation(event) {
+function getPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(retrieveWeather); 
+}
+
+function searchLocation(event) {
   event.preventDefault();
   let location = document.querySelector(`#location-input`);
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.value}&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(updateWeather);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(retrieveWeather);
 }
 
-function updateWeather(response) {
-  let temperature = Math.round(response.data.main.temp);
-  showCity.innerHTML = response.data.name;
-  showTemperature.innerHTML = `${temperature}°`;
-  showCond.innerHTML = response.data.weather[0].description;
+function convertC(tempC) {
+  return tempC * 1;
+}
+
+function retrieveWeather(response) {
+  let city = response.data.name;
+  let celsius = Math.round(response.data.main.temp);
+  let fahrenheit = convertC(celsius);
+  let description = response.data.weather[0].description;
+  let humidity = response.data.main.humidity;
+  let windspeed = response.data.wind.speed;
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
   let offset = response.data.timezone;
-  updateTime(offset);
+  let hourlyForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,daily,alerts&appid=${apiKey}`;
+
+  axios.get(hourlyForecast).then(function(response) {
+
+    let weatherObj = {
+      temperature: {
+        celsius,
+        fahrenheit
+      },
+      city,
+      description,
+      humidity,
+      windspeed,
+      offset,
+      precipitation: (1 - Number(response.data.hourly[0].pop)) * 100 + '%'
+    };
+    
+    updateData(weatherObj);
+
+  });
+
+  
 }
 
-let apiKey = `3bfeb5b01631989c9755b5bc4d802195`;
 
-let unit = `metric`;
+function updateData(weatherObj){
+  displayCity.innerHTML = weatherObj.city;
+  displayTemperature.innerHTML = `${weatherObj.temperature.celsius}°`;
+  displayCond.innerHTML = weatherObj.description;
+  displayPrecip.innerHTML = weatherObj.precipitation;
+  displayHumid.innerHTML = weatherObj.humidity;
+  displayWind.innerHTML = weatherObj.windspeed;
+  updateTime(weatherObj.offset);
+}
 
-let showCity =  document.querySelector(`#display-location`);
-let showTemperature = document.querySelector(`#display-temp`);
-let showCond = document.querySelector(`#display-cond`);
-let showTime = document.querySelector(`#display-time`);
-let celsius = document.querySelector(`#celsius`);
-let fahrenheit = document.querySelector(`#fahrenheit`);
-let searchLocation = document.querySelector(`#search-location`);
-let geolocate = document.querySelector(`#geolocate`);
+searchField.addEventListener("submit", searchLocation);
+geolocateBtn.addEventListener("click", runGeo);
+celsiusBtn.addEventListener("click", setMetric);
+fahrenheitBtn.addEventListener("click", setImperial);
 
 navigator.geolocation.getCurrentPosition(getPosition);
-searchLocation.addEventListener("submit", findLocation);
-geolocate.addEventListener("click", runGeo);
-celsius.addEventListener("click", setMetric);
-fahrenheit.addEventListener("click", setImperial);
