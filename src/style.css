@@ -2,8 +2,8 @@ body {
   margin: 1rem auto;
   line-height: 1;
   font-size: 16px;
-  width: 60%;
-  max-width: 720px;
+  width: 70%;
+  max-width: 600px;
   text-align: center;
 }
 
@@ -39,13 +39,12 @@ input[type=text]:focus {
   border: none;
 }
 
-
 main {
   background: rgb(248, 249, 250);
   border-radius: 10px;
-  max-width: 75%;
+  max-width: 80%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.8rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -66,7 +65,7 @@ h5 {
 
 .conditions {
   text-transform: capitalize;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
@@ -82,7 +81,6 @@ h5 {
   max-width: 60%;
   margin: 1rem auto;
   border-radius: 50%;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -105,13 +103,16 @@ main img {
   cursor: pointer;
 }
 
+.temptoggle:active {
+  color: orange;
+}
+
 .details {
   margin: 0;
 }
 
-
 .forecast {
-  margin: 1rem auto;
+  margin: 0.8rem auto;
   width: 95%;
   text-align: left;
   min-width: fit-content;
@@ -129,7 +130,6 @@ main img {
 .card-body {
   padding: 0.5rem;
   word-wrap: normal;
-  
 }
 
 .card-body img {
@@ -150,5 +150,9 @@ main img {
 
 .footer {
   color: indigo;
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+
+a:link {
+  text-decoration: none;
 }

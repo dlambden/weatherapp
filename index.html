@@ -29,25 +29,23 @@
 
     <main>
 
-      <div class="userlocation">
         <h1 id="display-location">
           Location
         </h1>
         <span id="display-time">
           Date
         </span>
-      </div>
+      
 
       <div class="currentconditions">
         <div class="weatherimage">
-          <img src="img/rainy.png" />
+          <img id="mainpic" src="img/rainy.png" />
           <span id="display-temp" class="temp">
             0°
           </span>
-          <div class="convertunits">
-            <span id="celsius" class="temptoggle">C </span>|
-            <span id="fahrenheit" class="temptoggle">F</span>
-          </div>
+
+          <button id="temptoggle" type="button">C</button>
+
         </div>
         <span id="display-cond" class="conditions">
           Weather
@@ -144,7 +142,7 @@
   </div>
   <br />
   <span class="footer">
-    <a href="https://github.com/dlambden">Open-source code</a> by Darci Lambden   
+    <a href="https://github.com/dlambden" target="_blank">Open-source code</a> by Darci Lambden   
   </span>
   <script src="src/app.js"></script>
 </body>

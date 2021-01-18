@@ -1,41 +1,55 @@
 let apiKey = `3bfeb5b01631989c9755b5bc4d802195`;
 
 let displayTime = document.querySelector(`#display-time`);
-let displayCity =  document.querySelector(`#display-location`);
+let displayLocation =  document.querySelector(`#display-location`);
 let displayTemperature = document.querySelector(`#display-temp`);
 let displayCond = document.querySelector(`#display-cond`);
 let displayPrecip = document.querySelector(`#display-precip`);
 let displayHumid = document.querySelector(`#display-humid`);
 let displayWind = document.querySelector(`#display-wind`);
-let celsiusBtn = document.querySelector(`#celsius`);
-let fahrenheitBtn = document.querySelector(`#fahrenheit`);
 let searchField = document.querySelector(`#search-field`);
 let geolocateBtn = document.querySelector(`#geolocate`);
 
-let unit = `metric`;
+let mainPic = document.getElementById(`mainpic`);
+let tempBtn = document.getElementById(`temptoggle`);
 
-function updateTime(offset) {
+let globalUnits = 'metric';
+
+let weatherObj = {};
+
+function toggleTempHandler(e) {
+  let check = e.target.innerText;
+  if (check === 'C') {
+    globalUnits = 'imperial';
+    e.target.innerText = 'F';
+
+  } else {
+    globalUnits = 'metric'
+    e.target.innerText = 'C';
+  }
+
+  updateData();
+}
+
+function updateTime() {
+  let offset = weatherObj.offset;
+
   let now = new Date();
   let localTime = now.getTime();
   let localOffset = now.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
+
   let time = new Date(utc + (1000*offset));
+  weatherObj.timeData = time;
+
   let timeSplit = time.toLocaleString().split(' ');
-  let shavedTime = timeSplit[1].slice(0, 5);
+  let shavedTime = timeSplit[1].slice(0, 4);
   let timeString = `${timeSplit[0]} ${shavedTime} ${timeSplit[2]}`;
+
   displayTime.innerHTML = timeString;
 }
 
-
-function setMetric(event) {
-  unit = `metric`;
-}
-  
-function setImperial(event) {
-  unit = `imperial`;
-}
-
-function runGeo(event) {
+function geoHandler(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getPosition);
 }
@@ -47,7 +61,7 @@ function getPosition(position) {
   axios.get(apiUrl).then(retrieveWeather); 
 }
 
-function searchLocation(event) {
+function searchHandler(event) {
   event.preventDefault();
   let location = document.querySelector(`#location-input`);
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.value}&appid=${apiKey}&units=metric`;
@@ -55,14 +69,16 @@ function searchLocation(event) {
 }
 
 function convertC(tempC) {
-  return tempC * 1;
+  return (tempC * 1.8)+32;
 }
 
 function retrieveWeather(response) {
   let city = response.data.name;
+  let country = response.data.sys.country;
   let celsius = Math.round(response.data.main.temp);
   let fahrenheit = convertC(celsius);
-  let description = response.data.weather[0].description;
+  let conditions = response.data.weather[0].description;
+  let description = response.data.weather[0].main;
   let humidity = response.data.main.humidity;
   let windspeed = response.data.wind.speed;
   let lat = response.data.coord.lat;
@@ -72,12 +88,14 @@ function retrieveWeather(response) {
 
   axios.get(hourlyForecast).then(function(response) {
 
-    let weatherObj = {
+    weatherObj = {
       temperature: {
         celsius,
         fahrenheit
       },
       city,
+      country,
+      conditions,
       description,
       humidity,
       windspeed,
@@ -85,7 +103,7 @@ function retrieveWeather(response) {
       precipitation: (1 - Number(response.data.hourly[0].pop)) * 100 + '%'
     };
     
-    updateData(weatherObj);
+    updateData();
 
   });
 
@@ -93,19 +111,49 @@ function retrieveWeather(response) {
 }
 
 
-function updateData(weatherObj){
-  displayCity.innerHTML = weatherObj.city;
-  displayTemperature.innerHTML = `${weatherObj.temperature.celsius}°`;
-  displayCond.innerHTML = weatherObj.description;
+function updateData(){
+  updateTime();
+
+  displayLocation.innerHTML = `${weatherObj.city}, ${weatherObj.country}`;
+  
+  displayCond.innerHTML = weatherObj.conditions;
   displayPrecip.innerHTML = weatherObj.precipitation;
   displayHumid.innerHTML = weatherObj.humidity;
   displayWind.innerHTML = weatherObj.windspeed;
-  updateTime(weatherObj.offset);
+
+  displayTemperature.innerHTML = globalUnits === 'metric' ? 
+    `${weatherObj.temperature.celsius}°` : `${weatherObj.temperature.fahrenheit}°`;
+
+
+  let test = weatherObj.description;
+
+  if (test === "Clear") {
+
+    mainPic.src = "img/partsun.png";
+  } 
+  else if (test === "Clouds") {
+    mainPic.src = "img/cloudy.png";
+  }
+  else if (test === "Rain") {
+    mainPic.src = "img/rainy.png";
+  }
+  else if (test === "Drizzle") {
+    mainPic.src = "img/lightshower.png";
+  }
+  else if (test === "Snow") {
+    mainPic.src = "img/rainy.png";
+  }
+  else if (test === "Thunderstorm") {
+    mainPic.src = "img/rainy.png";
+  } else {
+    mainPic.src = "img/cloudy.png";
+  }
+
 }
 
-searchField.addEventListener("submit", searchLocation);
-geolocateBtn.addEventListener("click", runGeo);
-celsiusBtn.addEventListener("click", setMetric);
-fahrenheitBtn.addEventListener("click", setImperial);
+searchField.addEventListener("submit", searchHandler);
+geolocateBtn.addEventListener("click", geoHandler);
+tempBtn.addEventListener("click", toggleTempHandler);
+
 
 navigator.geolocation.getCurrentPosition(getPosition);
