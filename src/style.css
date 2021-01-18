@@ -80,7 +80,6 @@ h5 {
 .weatherimage {
   max-width: 60%;
   margin: 1rem auto;
-  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -90,21 +89,22 @@ main img {
   margin: -1rem;
 }
 
-.convertunits {
-  color: rgb(0, 0, 150);
-  font-weight: 600;
-  position: relative;
-  bottom: 2rem;
-  left: 2.8rem;
+
+#temptoggle {
+ background: none;
+ font-weight: 600;
+ border: solid 1px black;
+ border-radius: 2px;
+ padding: 0.2rem;
 }
 
-.temptoggle:hover {
+#temptoggle:hover {
   color: orange;
   cursor: pointer;
 }
 
-.temptoggle:active {
-  color: orange;
+#temptoggle:focus {
+  outline: none;
 }
 
 .details {
