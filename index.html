@@ -15,7 +15,7 @@
 <body>
   <div class="container">
 
-    <div class="location">
+    <header class="location">
       <button id="geolocate" class="btn">
         <i class="fas fa-map-marker-alt"></i>
       </button>
@@ -25,114 +25,114 @@
           <i class="fas fa-search"></i>
         </button>       
       </form>
-    </div>
+    </header>
 
     <main>
 
         <h1 id="display-location">
           Location
         </h1>
-        <p>
+        <p id="updatewrapper">
           Last updated: <span id="display-time"></span>
         </p>
 
       <div class="currentconditions">
         <div class="weatherimage">
-          <img id="mainpic" src="img/ico/rain.svg" />
+          <img id="mainpic" src="img/ico/day_rain.svg" />
           <span id="display-temp" class="temp">
-            0°
+            -°
           </span>
 
           <button id="temptoggle" type="button">C</button>
 
         </div>
         <span id="display-cond" class="conditions">
-          Weather
+          weather
         </span>
       </div>
 
       <p class="details">
-        Precipitation: <span id="display-precip">18%</span>
+        Precipitation: <span id="display-precip">--%</span>
         <br />
-        Humidity: <span id="display-humid">90</span>%
+        Humidity: <span id="display-humid">--</span>%
         <br />
-        Wind: <span id="display-wind">7</span><span id="windunit">km/h</span>
+        Wind: <span id="display-wind">--</span><span id="windunit">km/h</span>
       </p>
 
     </main>
 
     <div class="col forecast">
       <h5>
-        5 DAY FORECAST:
+        5 DAY FORECAST
       </h5>
       <div class="row">
         <div class="col card">
           <div class="card-body">
-            <span>
-              11/23
+            <span id="date1">
+              date
             </span>
-            <img src="img/rainy.png" />
-            <span>
-              Rain
+            <img id="img1" src=" " />
+            <span id="desc1">
+              desc
             </span>
-            <span class="dualtemp">
-              14°/6°
-            </span>
-          </div>
-        </div>
-        <div class="col card">
-          <div class="card-body">
-            <span>
-              11/24
-            </span>
-            <img src="img/rainy.png" />
-            <span>
-              Rain
-            </span>
-            <span class="dualtemp">
-              13°/7°
+            <span id="temp1" class="dualtemp">
+              --°/--°
             </span>
           </div>
         </div>
         <div class="col card">
           <div class="card-body">
-            <span>
-              11/25
+            <span id="date2">
+              date
             </span>
-            <img src="img/rainy.png" />
-            <span>
-              Rain
+            <img id="img2" src=" " />
+            <span id="desc2">
+              desc
             </span>
-            <span class="dualtemp">
-              14°/6°
-            </span>
-          </div>
-        </div>
-        <div class="col card">
-          <div class="card-body">
-            <span>
-              11/26
-            </span>
-            <img src="img/cloudy.png" />
-            <span>
-              Cloudy
-            </span>
-            <span class="dualtemp">
-              13°/5°
+            <span id="temp2" class="dualtemp">
+              --°/--°
             </span>
           </div>
         </div>
         <div class="col card">
           <div class="card-body">
-            <span>
-              11/27
+            <span id="date3">
+              date
             </span>
-            <img src="img/partsun.png" />
-            <span>
-              Partly Sunny
+            <img id="img3" src=" " />
+            <span id="desc3">
+              desc
             </span>
-            <span class="dualtemp">
-              12°/4°
+            <span id="temp3" class="dualtemp">
+              --°/--°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span id="date4">
+              date
+            </span>
+            <img id="img4" src=" " />
+            <span id="desc4">
+              desc
+            </span>
+            <span id="temp4" class="dualtemp">
+              --°/--°
+            </span>
+          </div>
+        </div>
+        <div class="col card">
+          <div class="card-body">
+            <span id="date5">
+              date
+            </span>
+            <img id="img5" src=" " />
+            <span id="desc5">
+              desc
+            </span>
+            <span id="temp5" class="dualtemp">
+              --°/--°
             </span>
           </div>
         </div>

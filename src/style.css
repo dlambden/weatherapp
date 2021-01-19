@@ -17,10 +17,14 @@ body {
 }
 
 .location {
-  width: 40%;
+  max-width:80%;
   margin: 1rem auto;
   display: flex;
   justify-content: center;
+}
+
+#search-field {
+  display: flex;
 }
 
 #geolocate {
@@ -92,10 +96,12 @@ main img {
 
 #temptoggle {
  background: none;
+ font-size: 1rem;
  font-weight: 600;
- border: solid 1px black;
+ border: solid 1px rgb(226, 226, 226);
  border-radius: 2px;
  padding: 0.2rem;
+ box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 #temptoggle:hover {
@@ -130,6 +136,7 @@ main img {
 .card-body {
   padding: 0.5rem;
   word-wrap: normal;
+  text-transform: capitalize;
 }
 
 .card-body img {
