@@ -1,14 +1,14 @@
-let apiKey = `3bfeb5b01631989c9755b5bc4d802195`;
+const apiKey = `3bfeb5b01631989c9755b5bc4d802195`;
 
-let displayTime = document.querySelector(`#display-time`);
-let displayLocation =  document.querySelector(`#display-location`);
-let displayTemperature = document.querySelector(`#display-temp`);
-let displayCond = document.querySelector(`#display-cond`);
-let displayPrecip = document.querySelector(`#display-precip`);
-let displayHumid = document.querySelector(`#display-humid`);
-let displayWind = document.querySelector(`#display-wind`);
-let searchField = document.querySelector(`#search-field`);
-let geolocateBtn = document.querySelector(`#geolocate`);
+const displayTime = document.querySelector(`#display-time`);
+const displayLocation =  document.querySelector(`#display-location`);
+const displayTemperature = document.querySelector(`#display-temp`);
+const displayCond = document.querySelector(`#display-cond`);
+const displayPrecip = document.querySelector(`#display-precip`);
+const displayHumid = document.querySelector(`#display-humid`);
+const displayWind = document.querySelector(`#display-wind`);
+const searchField = document.querySelector(`#search-field`);
+const geolocateBtn = document.querySelector(`#geolocate`);
 
 let mainPic = document.getElementById(`mainpic`);
 let windUnit = document.querySelector(`#windunit`);
@@ -63,7 +63,7 @@ function getPosition(position) {
   let lon = position.coords.longitude;
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(weatherUrl).then(retrieveWeather).catch(function(error) {
-    alert("geolocate failed");
+    alert("Your location was not found");
   });
   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=40&appid=${apiKey}&units=metric`;
   axios.get(forecastUrl).then(retrieveForecast);
@@ -76,7 +76,7 @@ function searchHandler(event) {
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.value}&appid=${apiKey}&units=metric`;
   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location.value}&cnt=40&appid=${apiKey}&units=metric`;
   axios.get(forecastUrl).then(retrieveForecast).catch(function(error) {
-    alert("search failed");
+    alert("Location cannot be found. Please try your search again");
   });
   axios.get(weatherUrl).then(retrieveWeather);  
   searchField.reset();
@@ -117,7 +117,7 @@ function retrieveWeather(response) {
       offset,
       sunrise,
       sunset,
-      precipitation: (1 - Number(response.data.hourly[0].pop)) * 100 + '%'
+      precipitation: Math.round((Number(response.data.hourly[0].pop)) * 100) + '%'
     };
     updateData();
   });
@@ -171,21 +171,21 @@ function parseIndex(data, index) {
   descElem.innerText = data.weather[0].description;
   imgElem.src = calcIcon(data.weather[0].main, true);
   tempElem.innerText = globalUnits === 'metric' 
-    ? `${data.main.temp_min_C}\n${data.main.temp_max_C}` 
-    : `${data.main.temp_min_F}\n${data.main.temp_max_F}`;
+    ? `${data.main.temp_max_C}° | ${data.main.temp_min_C}°` 
+    : `${data.main.temp_max_F}° | ${data.main.temp_min_F}°`;
 }
 
 function updateData(){
   updateTime();
   displayLocation.innerHTML = `${weatherObj.city}, ${weatherObj.country}`;
+  displayTemperature.innerHTML = globalUnits === 'metric' ? 
+  `${weatherObj.temperature.celsius}°` : `${weatherObj.temperature.fahrenheit}°`;
   displayCond.innerHTML = weatherObj.conditions;
+  mainPic.src = calcIcon(weatherObj.description);
   displayPrecip.innerHTML = weatherObj.precipitation;
-  displayHumid.innerHTML = weatherObj.humidity;
+  displayHumid.innerHTML = `${weatherObj.humidity}%`;
   displayWind.innerHTML = globalUnits === 'metric' ? 
   `${weatherObj.windspeed.kmh}` : `${weatherObj.windspeed.mph}`;
-  displayTemperature.innerHTML = globalUnits === 'metric' ? 
-    `${weatherObj.temperature.celsius}°` : `${weatherObj.temperature.fahrenheit}°`;
-  mainPic.src = calcIcon(weatherObj.description);
 }
 
 function calcIcon(test, forecast=false) {

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
+
 body {
-  margin: 1rem auto;
+  margin: 0 auto;
   line-height: 1;
   font-size: 16px;
   width: 70%;
@@ -7,59 +9,90 @@ body {
   text-align: center;
 }
 
+header {
+  max-width:80%;
+  margin: 0.5rem auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  margin: 0 auto;
+  color: rgb(122, 122, 122);
+  font-size: 0.9rem;
+}
+
+a:link {
+  text-decoration: none;
+}
+
 .container {
   min-width: fit-content;
   background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-  margin: 0 auto;
+  margin: 0.5rem auto;
   padding: 0.5rem;
   border-radius: 10px;
   text-align: center;
 }
 
-.location {
-  max-width:80%;
-  margin: 1rem auto;
-  display: flex;
-  justify-content: center;
+#geolocate {
+  margin: 0 0.4rem 0 0;
 }
 
 #search-field {
   display: flex;
+  flex-wrap: nowrap;
 }
 
-#geolocate {
-  padding: 0.5rem;
-}
-
-input[type=text] {
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+input[type=locationvalue] {
+  background: rgb(244, 249, 255);
   border: 1px solid rgb(191, 191, 191);
   border-radius: 2px;
-  padding: 0.2rem;
+  padding: 0.2rem 0.4rem;
 }
 
-input[type=text]:focus {
-  background-color: #c4dbf5;
-  border: none;
+input[type=locationvalue]:focus {
+  background-color: white;
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 2px;
+  outline: none;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+input[type=locationvalue]:hover {
+  background-color: rgb(248, 249, 250);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+i:active {
+  color: rgb(233, 152, 2);
+}
+
+i:hover {
+  color: rgb(233, 152, 2);
 }
 
 main {
   background: rgb(248, 249, 250);
   border-radius: 10px;
   max-width: 80%;
-  margin: 0 auto;
-  padding: 0.8rem;
+  margin: 0.5rem auto;
+  padding: 0.3rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Bai Jamjuree', sans-serif;
 }
 
 h1 {
-  margin: 0 auto;
+  margin: 0.1rem;
+  padding: 0.2rem;
   font-size: 3rem;
+  font-family: 'Bai Jamjuree', sans-serif;
+  font-weight: 400;
   color: rgb(0, 0, 150);
 }
 
 .currentconditions {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 h5 {
@@ -67,45 +100,38 @@ h5 {
   margin: 0.25rem;
 }
 
-.conditions {
+#display-cond {
   text-transform: capitalize;
   font-size: 1.8rem;
   font-weight: 600;
+  font-family: 'Bai Jamjuree', sans-serif;
 }
 
-.temp {
+#display-temp {
   display: inline-block;
-  font-size: 5rem;
+  font-size: 3rem;
+  font-family: 'Bai Jamjuree', sans-serif;
   font-weight: 600;
   color: rgb(0, 0, 150);
-  margin: -1rem;
 }
 
 .weatherimage {
-  max-width: 60%;
-  margin: 1rem auto;
-  overflow: hidden;
-}
-
-main img {
   max-width: 100%;
-  display: inline-block;
-  margin: -1rem;
+  margin: 1rem 4rem;
 }
-
 
 #temptoggle {
  background: none;
  font-size: 1rem;
  font-weight: 600;
- border: solid 1px rgb(226, 226, 226);
+ border: 1px solid rgb(191, 191, 191);
  border-radius: 2px;
  padding: 0.2rem;
  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 #temptoggle:hover {
-  color: orange;
+  color: rgb(233, 152, 2);
   cursor: pointer;
 }
 
@@ -114,52 +140,48 @@ main img {
 }
 
 .details {
-  margin: 0;
+  margin: 0.2rem;
+  line-height: 1.2;
 }
 
 .forecast {
-  margin: 0.8rem auto;
-  width: 95%;
+  font-family: 'Bai Jamjuree', sans-serif;
   text-align: left;
-  min-width: fit-content;
+  padding: 0;
 }
 
-.card {
+.card img {
+  margin: 0.2rem;
+}
+
+.forecast-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.forecast-card {
   background: rgb(248, 249, 250);
   margin: 0.2rem;
-  padding: 0;
+  padding: 0.3rem;
   border: none;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex: 1;
 }
 
 .card-body {
-  padding: 0.5rem;
-  word-wrap: normal;
+  padding: 0;
   text-transform: capitalize;
-}
-
-.card-body img {
-  display: block;
-  max-width: 100%;
-  
+  word-wrap: normal;
+  display: flex;
+  flex-direction: column;
 }
 
 .dualtemp {
   color: rgb(0, 0, 150);
-  font-weight: 800;
-  float: right;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.3rem;
 }
 
-.row {
-  flex-wrap: nowrap;
-}
-
-.footer {
-  color: indigo;
-  font-size: 0.9rem;
-}
-
-a:link {
-  text-decoration: none;
-}

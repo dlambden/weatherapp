@@ -15,7 +15,7 @@
 <body>
   <div class="container">
 
-    <header class="location">
+    <header>
       <button id="geolocate" class="btn">
         <i class="fas fa-map-marker-alt"></i>
       </button>
@@ -39,24 +39,18 @@
       <div class="currentconditions">
         <div class="weatherimage">
           <img id="mainpic" src="img/ico/day_rain.svg" />
-          <span id="display-temp" class="temp">
-            -°
-          </span>
-
+          <span id="display-temp"></span>
           <button id="temptoggle" type="button">C</button>
-
         </div>
-        <span id="display-cond" class="conditions">
-          weather
-        </span>
+        <span id="display-cond"></span>
       </div>
 
       <p class="details">
-        Precipitation: <span id="display-precip">--%</span>
+        Precipitation: <span id="display-precip"></span>
         <br />
-        Humidity: <span id="display-humid">--</span>%
+        Humidity: <span id="display-humid"></span>
         <br />
-        Wind: <span id="display-wind">--</span><span id="windunit">km/h</span>
+        Wind: <span id="display-wind"></span><span id="windunit">km/h</span>
       </p>
 
     </main>
@@ -65,84 +59,73 @@
       <h5>
         5 DAY FORECAST
       </h5>
-      <div class="row">
-        <div class="col card">
+      <div class="forecast-container">
+        <div class="forecast-card">
           <div class="card-body">
             <span id="date1">
               date
             </span>
             <img id="img1" src=" " />
+            <span id="temp1" class="dualtemp"></span>
             <span id="desc1">
               desc
             </span>
-            <span id="temp1" class="dualtemp">
-              --°/--°
-            </span>
           </div>
         </div>
-        <div class="col card">
+        <div class="forecast-card">
           <div class="card-body">
             <span id="date2">
               date
             </span>
             <img id="img2" src=" " />
+            <span id="temp2" class="dualtemp"></span>
             <span id="desc2">
               desc
             </span>
-            <span id="temp2" class="dualtemp">
-              --°/--°
-            </span>
           </div>
         </div>
-        <div class="col card">
+        <div class="forecast-card">
           <div class="card-body">
             <span id="date3">
               date
             </span>
             <img id="img3" src=" " />
+            <span id="temp3" class="dualtemp"></span>
             <span id="desc3">
               desc
             </span>
-            <span id="temp3" class="dualtemp">
-              --°/--°
-            </span>
           </div>
         </div>
-        <div class="col card">
+        <div class="forecast-card">
           <div class="card-body">
             <span id="date4">
               date
             </span>
             <img id="img4" src=" " />
+            <span id="temp4" class="dualtemp"></span>
             <span id="desc4">
               desc
             </span>
-            <span id="temp4" class="dualtemp">
-              --°/--°
-            </span>
           </div>
         </div>
-        <div class="col card">
+        <div class="forecast-card">
           <div class="card-body">
             <span id="date5">
               date
             </span>
             <img id="img5" src=" " />
+            <span id="temp5" class="dualtemp"></span>
             <span id="desc5">
               desc
-            </span>
-            <span id="temp5" class="dualtemp">
-              --°/--°
             </span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <br />
-  <span class="footer">
+  <footer>
     <a href="https://github.com/dlambden" target="_blank">Open-source code</a> by Darci Lambden   
-  </span>
+  </footer>
   <script src="src/app.js"></script>
 </body>
 </html>
