@@ -41,7 +41,7 @@ function toggleTempHandler(e) {
   } else {
     globalUnits = 'metric'
     e.target.innerText = 'C';
-    windUnit.innerText = 'km/h';
+    windUnit.innerText = '';
   }
   for (let i = 0; i < forecastArr.length; i++) {
     parseIndex(forecastArr[i], i);
@@ -63,7 +63,7 @@ function getPosition(position) {
   let lon = position.coords.longitude;
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(weatherUrl).then(retrieveWeather).catch(function(error) {
-    alert("Your location was not found");
+    alert("Your location was not found.");
   });
   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=40&appid=${apiKey}&units=metric`;
   axios.get(forecastUrl).then(retrieveForecast);
@@ -76,7 +76,7 @@ function searchHandler(event) {
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.value}&appid=${apiKey}&units=metric`;
   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location.value}&cnt=40&appid=${apiKey}&units=metric`;
   axios.get(forecastUrl).then(retrieveForecast).catch(function(error) {
-    alert("Location cannot be found. Please try your search again");
+    alert("Location cannot be found. Please try your search again.");
   });
   axios.get(weatherUrl).then(retrieveWeather);  
   searchField.reset();
@@ -185,7 +185,7 @@ function updateData(){
   displayPrecip.innerHTML = weatherObj.precipitation;
   displayHumid.innerHTML = `${weatherObj.humidity}%`;
   displayWind.innerHTML = globalUnits === 'metric' ? 
-  `${weatherObj.windspeed.kmh}` : `${weatherObj.windspeed.mph}`;
+  `${weatherObj.windspeed.kmh}km/h` : `${weatherObj.windspeed.mph}`;
 }
 
 function calcIcon(test, forecast=false) {
